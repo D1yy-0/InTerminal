@@ -13,6 +13,7 @@ static void game_shutdown(void);
 /* Private State */
 
 static int running = 0;
+static char command[100];
 
 /* Public Functions */
 
@@ -47,7 +48,8 @@ static void game_initialize(void) {
 
 static void game_input(void) {
 
-    printf("Game input processing...\n");
+    printf("> ");
+    fgets(command, sizeof(command), stdin);
 
 }
 
