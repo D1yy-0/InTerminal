@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "game.h"
 
 
@@ -7,6 +8,7 @@
 static void game_initialize(void);
 static void game_input(void);
 static void game_update(void);
+static void process_command(void);
 static void game_render(void);
 static void game_shutdown(void);
 
@@ -29,9 +31,6 @@ void game_run(void) {
 
         game_render();
 
-        /* if ( // some condition to exit the game ) {
-            running = 0;
-        } */
     }
 
     game_shutdown();
@@ -49,13 +48,25 @@ static void game_initialize(void) {
 static void game_input(void) {
 
     printf("> ");
-    fgets(command, sizeof(command), stdin);
+
+    if(fgets(command, sizeof(command), stdin) != NULL){
+        command[strcspn(command, "\n")] = 0; // Remove newline character
+    }
 
 }
 
 static void game_update(void) {
 
-    printf("Game updating...\n");
+    process_command();
+
+}
+
+static void process_command(void) {
+
+    if(strcmp(command, "quit") == 0){
+        printf("Quitting detected...\n");
+        running = 0;
+    }
 
 }
 
