@@ -6,7 +6,6 @@
 
 /* C standard library headers */
 
-#include <stdio.h>
 #include <string.h>
 
 /* Project headers */
@@ -14,6 +13,7 @@
 #include "game.h"
 #include "player.h"
 #include "room.h"
+#include "commands.h"
 #include "constants.h"
 
 
@@ -22,7 +22,7 @@
 static void game_initialize(void);
 static void game_input(void);
 static void game_update(void);
-static void process_command(void);
+static void process_command(Player *player, Room *rooms);
 static void game_render(void);
 static void game_shutdown(void);
 
@@ -54,6 +54,7 @@ void game_run(void) {
 
 }
 
+/// @brief Initializes the game with the default starting values.
 static void game_initialize(void) {
 
     player.health = 100;
@@ -92,15 +93,18 @@ static void game_input(void) {
 
 static void game_update(void) {
 
-    process_command();
+    process_command(&player, rooms);
 
 }
 
-static void process_command(void) {
+static void process_command(Player *player, Room *rooms) {
 
     if(strcmp(command, "quit") == 0){
         printf("Quitting detected...\n");
         running = 0;
+    }
+    else if(strcmp(command, "look") == 0){
+        command_look(player, rooms);
     }
 
 }
