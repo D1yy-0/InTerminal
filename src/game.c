@@ -35,7 +35,7 @@ static Player player;
 static Room rooms[MAX_ROOMS];
 
 /* Public Functions */
-
+  
 void game_run(void) {
 
     game_initialize();
@@ -62,12 +62,7 @@ static void game_initialize(void) {
     player.gold = 0;
     player.current_room = 0;
 
-    strcpy(rooms[0].name, "Tutorial Room");
-    strcpy(rooms[0].description, "You are in the tutorial room. There is a door to the north.");
-    rooms[0].north = 1;
-    rooms[0].south = -1;
-    rooms[0].east = -1;
-    rooms[0].west = -1;
+    rooms_initialize(rooms);
 
     running = 1;
 
@@ -106,12 +101,27 @@ static void process_command(Player *player, Room *rooms) {
     else if(strcmp(command, "look") == 0){
         command_look(player, rooms);
     }
+    else if(strcmp(command, "north") == 0){
+        command_move(player, rooms, command);
+    }
+    else if(strcmp(command, "south") == 0){
+        command_move(player, rooms, command);
+    }
+    else if(strcmp(command, "east") == 0){
+        command_move(player, rooms, command);
+    }
+    else if(strcmp(command, "west") == 0){
+        command_move(player, rooms, command);
+    }
+
 
 }
 
 static void game_render(void) {
 
-    printf("Game rendering...\n");
+    if(strcmp(command, "look") !=0){
+        command_look(&player, rooms);
+    }
 
 }
 
