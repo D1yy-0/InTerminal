@@ -3,6 +3,7 @@
 
 #include <string.h>
 
+/// @brief Represents a room in the game world.
 typedef struct{
 
     char name[50];
@@ -13,7 +14,7 @@ typedef struct{
     int east;
     int west;
 
-}Room;
+} Room;
 
 /// @brief Initializes the rooms used by the game world.
 /// @param rooms Pointer to the array of `Room` structs.

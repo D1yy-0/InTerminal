@@ -1,6 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+/// @brief Represents the player in the game.
 typedef struct {
 
     int health;
@@ -8,6 +9,6 @@ typedef struct {
     int gold;
     int current_room;
 
-}Player;
+} Player;
 
 #endif // PLAYER_H

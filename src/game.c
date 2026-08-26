@@ -19,11 +19,24 @@
 
 /* Private Functions prototypes */
 
+/// @brief Initializes the game.
 static void game_initialize(void);
+
+/// @brief Handles user input.
 static void game_input(void);
+
+/// @brief Updates the game state.
 static void game_update(void);
+
+/// @brief Processes the user's command.
+/// @param player Pointer to the `Player` struct.
+/// @param rooms Pointer to the array of `Room` structs.
 static void process_command(Player *player, Room *rooms);
+
+/// @brief Renders the game state.
 static void game_render(void);
+
+/// @brief Shuts down the game and performs cleanup.
 static void game_shutdown(void);
 
 /* Private State */
@@ -35,7 +48,7 @@ static Player player;
 static Room rooms[MAX_ROOMS];
 
 /* Public Functions */
-  
+
 void game_run(void) {
 
     game_initialize();
@@ -117,6 +130,7 @@ static void process_command(Player *player, Room *rooms) {
 
 }
 
+/// @brief Renders the game state.
 static void game_render(void) {
 
     if(strcmp(command, "look") !=0){
